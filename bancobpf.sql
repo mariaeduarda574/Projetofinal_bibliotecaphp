@@ -31,8 +31,10 @@ CREATE TABLE `livros` (
   `id` int(11) NOT NULL,
   `Título` varchar(100) NOT NULL,
   `Autor` varchar(100) NOT NULL,
-  `Editora` varchar(100) NOT NULL,
-  `Qtd` int(11) NOT NULL
+  `Editora` varchar(100),
+  `categoria` varchar(100),
+  `ano_publicacao`int(11),
+  `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

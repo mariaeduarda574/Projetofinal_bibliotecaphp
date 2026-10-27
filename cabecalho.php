@@ -1,5 +1,5 @@
 <?php
-$base_url = '/Biblioteca_php/';
+$base_url = '/Projetofinal_bibliotecaphp/';
 $titulo_pagina = $titulo_pagina ?? 'Biblioteca Aurora';
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ $titulo_pagina = $titulo_pagina ?? 'Biblioteca Aurora';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#4c2678">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>css/estilo.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/css/estilo.css">
     <title><?php echo htmlspecialchars($titulo_pagina); ?> | Biblioteca Aurora</title>
 </head>
 <body>

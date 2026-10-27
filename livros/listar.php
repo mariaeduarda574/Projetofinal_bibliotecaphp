@@ -1,4 +1,4 @@
-```php
+
 <?php
 require __DIR__ . '/verifica_login.php';
 require __DIR__ . '/../conexao.php';
@@ -7,11 +7,11 @@ $titulo_pagina = 'Acervo';
 
 require __DIR__ . '/../cabecalho.php';
 
-$resultado = "SELECT * FROM livros ORDER BY `Título`";
+$sql = "SELECT * FROM livros ORDER BY titulo";
+$resultado = mysqli_query($conexao, $sql);
 ?>
 
 <main class="content-main">
-
     <div class="page-heading">
         <div>
             <span class="eyebrow">CATÁLOGO</span>
@@ -49,7 +49,7 @@ $resultado = "SELECT * FROM livros ORDER BY `Título`";
                     <th>Editora</th>
                     <th>Ano</th>
                     <th>Categoria</th>
-                    <th>Qtd.</th>
+                    <th>Quantidade</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -67,11 +67,11 @@ $resultado = "SELECT * FROM livros ORDER BY `Título`";
                         </td>
 
                         <td>
-                            <?php echo htmlspecialchars($livro['autor']); ?>
+                           <?php echo htmlspecialchars($livro['Autor'] ?? ''); ?>
                         </td>
 
                         <td>
-                            <?php echo htmlspecialchars($livro['editora']); ?>
+                           <?php echo htmlspecialchars($livro['Editora'] ?? ''); ?>
                         </td>
 
                         <td>
@@ -91,7 +91,7 @@ $resultado = "SELECT * FROM livros ORDER BY `Título`";
                         <td class="actions">
                             <a
                                 class="action-link"
-                                href="atualizar.php?id=<?php echo (int) $livro['id']; ?>"
+                                href="editar.php?id=<?php echo (int) $livro['id']; ?>"
                             >
                                 Editar
                             </a>
@@ -129,4 +129,3 @@ $resultado = "SELECT * FROM livros ORDER BY `Título`";
 <?php
 require __DIR__ . '/../rodape.php';
 ?>
-```

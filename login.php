@@ -4,7 +4,7 @@ session_start();
 
 require __DIR__ . '/conexao.php';
 
-$base_url = '/Biblioteca_php/';
+$base_url = '/Projetofinal_bibliotecaphp/';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');

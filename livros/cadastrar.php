@@ -1,7 +1,8 @@
-```php
 <?php
 require __DIR__ . '/verifica_login.php';
 require __DIR__ . '/../conexao.php';
+
+$mensagem = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = trim($_POST['titulo'] ?? '');
@@ -11,40 +12,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $categoria = trim($_POST['categoria'] ?? '');
     $quantidade = trim($_POST['quantidade'] ?? '');
 
+    // Verifica os campos obrigatórios
     if ($titulo === '' || $autor === '' || $quantidade === '') {
         $mensagem = 'Preencha título, autor e quantidade.';
+    } elseif (!ctype_digit($quantidade)) {
+        $mensagem = 'A quantidade deve ser um número inteiro igual ou maior que zero.';
     } else {
-        $stmt = mysqli_prepare(
-            $conexao,
-            'INSERT INTO livros (
-                titulo,
-                autor,
-                editora,
-                ano_publicacao,
-                categoria,
-                quantidade
-            ) VALUES (?, ?, ?, NULLIF(?, ""), ?, ?)'
-        );
+        // Converte os campos vazios em NULL quando necessário
+        $ano = ($ano === '') ? null : $ano;
+        $editora = ($editora === '') ? null : $editora;
+        $categoria = ($categoria === '') ? null : $categoria;
 
-        mysqli_stmt_bind_param(
-            $stmt,
-            'sssssi',
-            $titulo,
-            $autor,
-            $editora,
-            $ano,
-            $categoria,
-            $quantidade
-        );
+        // Prepara a consulta SQL
+        $sql = "INSERT INTO livros (
+                    titulo,
+                    autor,
+                    editora,
+                    ano_publicacao,
+                    categoria,
+                    quantidade
+                ) VALUES (?, ?, ?, ?, ?, ?)";
 
-        if (mysqli_stmt_execute($stmt)) {
-            $_SESSION['mensagem'] = 'Livro cadastrado com sucesso!';
+        $stmt = mysqli_prepare($conexao, $sql);
 
-            header('Location: listar.php');
-            exit;
+        if (!$stmt) {
+            die('Erro ao preparar SQL: ' . mysqli_error($conexao));
+        } else {
+            $quantidade = (int) $quantidade;
+
+            mysqli_stmt_bind_param(
+                $stmt,
+                'sssssi',
+                $titulo,
+                $autor,
+                $editora,
+                $ano,
+                $categoria,
+                $quantidade
+            );
+
+            if (mysqli_stmt_execute($stmt)) {
+                $_SESSION['mensagem'] = 'Livro cadastrado com sucesso!';
+
+                mysqli_stmt_close($stmt);
+
+                header('Location: listar.php');
+                exit;
+            } else {
+                error_log('Erro ao cadastrar livro: ' . mysqli_stmt_error($stmt));
+                $mensagem = 'Não foi possível cadastrar o livro. Verifique os dados e tente novamente.';
+            }
+
+            mysqli_stmt_close($stmt);
         }
-
-        $mensagem = 'Não foi possível cadastrar o livro.';
     }
 }
 
@@ -79,9 +99,9 @@ require __DIR__ . '/../cabecalho.php';
             Os campos com * são obrigatórios.
         </p>
 
-        <?php if (isset($mensagem)) { ?>
+        <?php if ($mensagem !== '') { ?>
             <p class="alert alert-error">
-                <?php echo htmlspecialchars($mensagem); ?>
+                <?php echo htmlspecialchars($mensagem, ENT_QUOTES, 'UTF-8'); ?>
             </p>
         <?php } ?>
 
@@ -92,9 +112,10 @@ require __DIR__ . '/../cabecalho.php';
             <input
                 id="titulo"
                 name="titulo"
+                type="text"
                 maxlength="150"
                 required
-                value="<?php echo htmlspecialchars($_POST['titulo'] ?? ''); ?>"
+                value="<?php echo htmlspecialchars($_POST['titulo'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
             >
 
             <label for="autor">Autor *</label>
@@ -102,9 +123,10 @@ require __DIR__ . '/../cabecalho.php';
             <input
                 id="autor"
                 name="autor"
+                type="text"
                 maxlength="100"
                 required
-                value="<?php echo htmlspecialchars($_POST['autor'] ?? ''); ?>"
+                value="<?php echo htmlspecialchars($_POST['autor'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
             >
 
             <div class="form-grid">
@@ -115,15 +137,14 @@ require __DIR__ . '/../cabecalho.php';
                     <input
                         id="editora"
                         name="editora"
+                        type="text"
                         maxlength="100"
-                        value="<?php echo htmlspecialchars($_POST['editora'] ?? ''); ?>"
+                        value="<?php echo htmlspecialchars($_POST['editora'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                     >
                 </div>
 
                 <div>
-                    <label for="ano_publicacao">
-                        Ano de publicação
-                    </label>
+                    <label for="ano_publicacao">Ano de publicação</label>
 
                     <input
                         id="ano_publicacao"
@@ -131,7 +152,7 @@ require __DIR__ . '/../cabecalho.php';
                         type="number"
                         min="0"
                         max="2100"
-                        value="<?php echo htmlspecialchars($_POST['ano_publicacao'] ?? ''); ?>"
+                        value="<?php echo htmlspecialchars($_POST['ano_publicacao'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                     >
                 </div>
 
@@ -145,8 +166,9 @@ require __DIR__ . '/../cabecalho.php';
                     <input
                         id="categoria"
                         name="categoria"
+                        type="text"
                         maxlength="80"
-                        value="<?php echo htmlspecialchars($_POST['categoria'] ?? ''); ?>"
+                        value="<?php echo htmlspecialchars($_POST['categoria'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                         placeholder="Ex.: Romance"
                     >
                 </div>
@@ -159,8 +181,9 @@ require __DIR__ . '/../cabecalho.php';
                         name="quantidade"
                         type="number"
                         min="0"
+                        step="1"
                         required
-                        value="<?php echo htmlspecialchars($_POST['quantidade'] ?? '1'); ?>"
+                        value="<?php echo htmlspecialchars($_POST['quantidade'] ?? '1', ENT_QUOTES, 'UTF-8'); ?>"
                     >
                 </div>
 
@@ -181,4 +204,3 @@ require __DIR__ . '/../cabecalho.php';
 <?php
 require __DIR__ . '/../rodape.php';
 ?>
-```

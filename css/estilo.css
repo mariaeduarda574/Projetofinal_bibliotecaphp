@@ -1,7 +1,4 @@
-```css
-/* =========================================================
-   1. FONTES
-   ========================================================= */
+
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 
@@ -976,4 +973,147 @@ tbody tr:hover {
         width: 100%;
     }
 }
-```
+
+/* =========================================================
+   TABELA DE LIVROS — BIBLIOTECA AURORA
+   ========================================================= */
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 25px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+/* Estrutura da tabela */
+
+.table-wrap table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Cabeçalho */
+
+.table-wrap th {
+    padding: 17px 20px;
+    background: var(--lilac-100);
+    color: var(--purple-800);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+}
+
+/* Células */
+
+.table-wrap td {
+    padding: 17px 20px;
+    color: var(--ink);
+    font-size: 13px;
+    border-bottom: 1px solid #f0eaf5;
+    vertical-align: middle;
+}
+
+/* Alternância suave entre as linhas */
+
+.table-wrap tbody tr:nth-child(even) {
+    background: #fdfbff;
+}
+
+/* Efeito ao passar o mouse */
+
+.table-wrap tbody tr {
+    transition: background 0.2s ease;
+}
+
+.table-wrap tbody tr:hover {
+    background: var(--lilac-100);
+}
+
+/* Remove a borda da última linha */
+
+.table-wrap tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Título dos livros */
+
+.table-wrap .book-title {
+    color: var(--purple-950);
+    font-weight: 700;
+}
+
+/* Categoria do livro */
+
+.table-wrap .category-pill {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: var(--lilac-100);
+    color: var(--purple-800);
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Coluna de ações */
+
+.table-wrap .actions {
+    white-space: nowrap;
+}
+
+/* Links de editar e excluir */
+
+.table-wrap .action-link {
+    display: inline-block;
+    margin-right: 12px;
+    color: var(--purple-700);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.table-wrap .action-link:hover {
+    color: var(--purple-950);
+    text-decoration: underline;
+}
+
+/* Ação de excluir */
+
+.table-wrap .action-delete {
+    color: var(--danger);
+}
+
+.table-wrap .action-delete:hover {
+    color: #7f2345;
+}
+
+/* Tabela sem resultados */
+
+.table-wrap .empty-state {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Ajustes para celulares */
+
+@media (max-width: 800px) {
+    .table-wrap {
+        border-radius: 14px;
+    }
+
+    .table-wrap th,
+    .table-wrap td {
+        padding: 13px 15px;
+    }
+}
