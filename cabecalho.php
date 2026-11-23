@@ -18,6 +18,7 @@ $titulo_pagina = $titulo_pagina ?? 'Biblioteca Aurora';
     <a href="<?php echo $base_url; ?>index.php">Início</a>
     <a href="<?php echo $base_url; ?>livros/listar.php">Acervo</a>
     <a href="<?php echo $base_url; ?>livros/cadastrar.php">Cadastrar livro</a>
+    <a href="../reservas/listar.php">Minhas reservas</a>
     <a href="<?php echo $base_url; ?>login.php">Entrar</a>
     <a class="nav-exit" href="<?php echo $base_url; ?>logout.php">Sair</a>
   </nav>

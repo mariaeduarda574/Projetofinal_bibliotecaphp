@@ -1,4 +1,3 @@
-
 <?php
 require __DIR__ . '/verifica_login.php';
 require __DIR__ . '/../conexao.php';
@@ -59,56 +58,57 @@ $resultado = mysqli_query($conexao, $sql);
                 <?php
                 if ($resultado && mysqli_num_rows($resultado) > 0) {
                     while ($livro = mysqli_fetch_assoc($resultado)) {
-                ?>
+                        ?>
 
-                    <tr>
-                        <td class="book-title">
-                            <?php echo htmlspecialchars($livro['titulo']); ?>
-                        </td>
+                        <tr>
+                            <td class="book-title">
+                                <?php echo htmlspecialchars($livro['titulo']); ?>
+                            </td>
 
-                        <td>
-                           <?php echo htmlspecialchars($livro['Autor'] ?? ''); ?>
-                        </td>
+                            <td>
+                                <?php echo htmlspecialchars($livro['Autor'] ?? ''); ?>
+                            </td>
 
-                        <td>
-                           <?php echo htmlspecialchars($livro['Editora'] ?? ''); ?>
-                        </td>
+                            <td>
+                                <?php echo htmlspecialchars($livro['Editora'] ?? ''); ?>
+                            </td>
 
-                        <td>
-                            <?php echo htmlspecialchars((string) $livro['ano_publicacao']); ?>
-                        </td>
+                            <td>
+                                <?php echo htmlspecialchars((string) $livro['ano_publicacao']); ?>
+                            </td>
 
-                        <td>
-                            <span class="category-pill">
-                                <?php echo htmlspecialchars($livro['categoria']); ?>
-                            </span>
-                        </td>
+                            <td>
+                                <span class="category-pill">
+                                    <?php echo htmlspecialchars($livro['categoria']); ?>
+                                </span>
+                            </td>
 
-                        <td>
-                            <?php echo (int) $livro['quantidade']; ?>
-                        </td>
+                            <td>
+                                <?php echo (int) $livro['quantidade']; ?>
+                            </td>
 
-                        <td class="actions">
-                            <a
-                                class="action-link"
-                                href="editar.php?id=<?php echo (int) $livro['id']; ?>"
-                            >
-                                Editar
-                            </a>
+                            <td class="actions">
 
-                            <a
-                                class="action-link action-delete"
-                                href="excluir.php?id=<?php echo (int) $livro['id']; ?>"
-                            >
-                                Excluir
-                            </a>
-                        </td>
-                    </tr>
+                                <a href="editar.php?id=<?php echo $livro['id']; ?>" class="action-link">
+                                    Editar
+                                </a>
 
-                <?php
+                                <a href="excluir.php?id=<?php echo $livro['id']; ?>" class="action-link action-delete">
+                                    Excluir
+                                </a>
+
+                                <form action="../reservas/criar.php" method="POST" class="form-reservar">
+                                    <input type="hidden" name="livro_id" value="<?php echo $livro['id']; ?>">
+                                    <button type="submit" class="btn-reservar">Reservar</button>
+                                </form>
+
+                            </td>
+                        </tr>
+
+                        <?php
                     }
                 } else {
-                ?>
+                    ?>
 
                     <tr>
                         <td colspan="7" class="empty-state">

@@ -1117,3 +1117,68 @@ tbody tr:hover {
         padding: 13px 15px;
     }
 }
+
+/* RESERVA NA TABELA DE LIVROS */
+
+.table-wrap td.actions {
+    display: table-cell;
+    white-space: nowrap;
+}
+
+.table-wrap td.actions .form-reservar {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    vertical-align: middle;
+}
+
+.table-wrap td.actions .btn-reservar {
+    display: inline-block;
+    width: auto !important;
+    height: auto;
+    margin: 0;
+    padding: 7px 12px;
+    border: none !important;
+    border-radius: 7px;
+    outline: none;
+    box-shadow: none !important;
+    background: #633a91;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.table-wrap td.actions .btn-reservar:hover {
+    background: #4c2678;
+}
+
+/* Botão de remover reserva */
+.btn-lixeira {
+    background: #fff0f3;
+    color: #a83d62;
+    border: 1px solid #f3ccd7;
+    border-radius: 8px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+}
+
+.btn-lixeira:hover {
+    background: #a83d62;
+    color: #fff;
+}
+
+.table-wrap td form {
+    margin: 0;
+}
