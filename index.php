@@ -8,6 +8,7 @@ require __DIR__ . '/cabecalho.php';
         <div class="hero-copy"><span class="eyebrow">SEU PRÓXIMO CAPÍTULO COMEÇA AQUI</span>
 
         <h1>Histórias que<br><em>iluminam mundos.</em></h1>
+        
 
         <p>Organize seu acervo, descubra livros e mantenha cada história ao alcance das mãos.</p>
 
@@ -36,5 +37,89 @@ require __DIR__ . '/cabecalho.php';
             <small>Um ótimo dia para ler.</small>
         </div>
     </section>
+
+
+<section class="porque-ler">
+    <div class="porque-intro">
+        <span class="porque-etiqueta">DESCUBRA O PRAZER DA LEITURA</span>
+        <h2>Por que <em>ler?</em></h2>
+        <p>
+            Muito além das páginas, a leitura abre portas para
+            novos conhecimentos, ideias e possibilidades.
+            Cada livro tem algo novo para ensinar.
+        </p>
+    </div>
+
+    <div class="porque-cards">
+
+        <div class="porque-card">
+            <div class="porque-icone">🧠</div>
+            <h3>Conhecimento</h3>
+            <p>
+                Cada livro é uma oportunidade de aprender algo novo
+                e descobrir diferentes assuntos.
+            </p>
+        </div>
+
+        <div class="porque-card">
+            <div class="porque-icone">✨</div>
+            <h3>Imaginação</h3>
+            <p>
+                As histórias nos levam a novos mundos e despertam
+                nossa criatividade.
+            </p>
+        </div>
+
+        <div class="porque-card">
+            <div class="porque-icone">💬</div>
+            <h3>Comunicação</h3>
+            <p>
+                A leitura amplia nosso vocabulário e nos ajuda
+                a expressar melhor nossas ideias.
+            </p>
+        </div>
+
+        <div class="porque-card">
+            <div class="porque-icone">🌷</div>
+            <h3>Novas perspectivas</h3>
+            <p>
+                Conhecemos diferentes experiências, culturas
+                e maneiras de enxergar o mundo.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="porque-frase">
+        <p>
+            "Um livro pode ser o começo de uma descoberta
+            que transforma a maneira como vemos o mundo."
+        </p>
+        <span>Biblioteca Aurora</span>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </main>
 <?php require __DIR__ . '/rodape.php'; ?>

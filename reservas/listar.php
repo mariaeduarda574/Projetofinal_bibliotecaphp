@@ -20,8 +20,14 @@ $sql = "SELECT
         ORDER BY reservas.data_reserva DESC";
 
 $stmt = mysqli_prepare($conexao, $sql);
+
+if (!$stmt) {
+    die('Erro ao consultar as reservas.');
+}
+
 mysqli_stmt_bind_param($stmt, 'i', $usuario_id);
 mysqli_stmt_execute($stmt);
+
 $resultado = mysqli_stmt_get_result($stmt);
 
 $titulo_pagina = 'Minhas reservas';
@@ -39,9 +45,24 @@ require __DIR__ . '/../cabecalho.php';
         </div>
     </div>
 
+    <?php if (isset($_SESSION['mensagem'])): ?>
+
+        <?php $tipo_mensagem = $_SESSION['tipo_mensagem'] ?? 'success'; ?>
+
+        <p class="alert alert-<?php echo htmlspecialchars($tipo_mensagem); ?>">
+            <?php echo htmlspecialchars($_SESSION['mensagem']); ?>
+        </p>
+
+        <?php
+        unset($_SESSION['mensagem']);
+        unset($_SESSION['tipo_mensagem']);
+        ?>
+
+    <?php endif; ?>
+
     <div class="table-wrap">
 
-        <?php if (mysqli_num_rows($resultado) > 0): ?>
+        <?php if ($resultado && mysqli_num_rows($resultado) > 0): ?>
 
             <table>
                 <thead>
@@ -123,4 +144,7 @@ require __DIR__ . '/../cabecalho.php';
 
 </main>
 
-<?php require __DIR__ . '/../rodape.php'; ?>
+<?php
+mysqli_stmt_close($stmt);
+require __DIR__ . '/../rodape.php';
+?>

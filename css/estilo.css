@@ -378,6 +378,139 @@ main {
 }
 
 
+
+
+/* SEÇÃO POR QUE LER */
+
+.porque-ler {
+    padding: 75px 5%;
+    background: #faf7fc;
+    text-align: center;
+}
+
+.porque-intro {
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+.porque-etiqueta {
+    color: #9472a9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.porque-intro h2 {
+    font-size: 38px;
+    color: #493653;
+    margin: 12px 0;
+}
+
+.porque-intro h2 em {
+    color: #a77cbd;
+    font-family: Georgia, serif;
+}
+
+.porque-intro p {
+    color: #77707d;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.porque-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.porque-card {
+    background: #ffffff;
+    border: 1px solid #eee5f2;
+    border-radius: 18px;
+    padding: 30px 22px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.porque-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(90, 60, 110, 0.10);
+}
+
+.porque-icone {
+    width: 58px;
+    height: 58px;
+    background: #f3eafa;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    margin: 0 auto 20px;
+}
+
+.porque-card h3 {
+    color: #513e5d;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.porque-card p {
+    color: #817986;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.porque-frase {
+    max-width: 700px;
+    margin: 55px auto 0;
+    padding: 25px;
+    border-top: 1px solid #e8ddec;
+}
+
+.porque-frase p {
+    color: #654d70;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.porque-frase span {
+    display: block;
+    margin-top: 12px;
+    color: #a17eaf;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+    .porque-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .porque-ler {
+        padding: 50px 6%;
+    }
+
+    .porque-intro h2 {
+        font-size: 30px;
+    }
+
+    .porque-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .porque-frase p {
+        font-size: 16px;
+    }
+}
+
 /* =========================================================
    8. CONTEÚDO DAS PÁGINAS INTERNAS
    ========================================================= */
@@ -540,8 +673,9 @@ tbody tr:hover {
 }
 
 .hero .button-primary {
-    background: #fff;
-    color: var(--purple-900);
+    background: #ffffff18;
+    border: 1px solid #ffffff45;
+    color: #fff;
 }
 
 /* Botão secundário */
@@ -623,7 +757,7 @@ tbody tr:hover {
    ========================================================= */
 
 .panel {
-    background: #fff;
+    background: #d7c1ed;
     border: 1px solid var(--line);
     border-radius: 22px;
     padding: clamp(24px, 4vw, 38px);
@@ -1181,4 +1315,11 @@ tbody tr:hover {
 
 .table-wrap td form {
     margin: 0;
+}
+
+
+.porque-ler {
+    background: #faf7fc !important;
+    padding: 75px 5% !important;
+    text-align: center !important;
 }

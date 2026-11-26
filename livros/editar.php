@@ -56,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (mysqli_stmt_execute($stmt)) {
                 $_SESSION['mensagem'] = 'Livro atualizado com sucesso!';
+                $_SESSION['tipo_mensagem'] = 'success';
+
                 mysqli_stmt_close($stmt);
                 header('Location: listar.php');
                 exit;

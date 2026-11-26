@@ -22,15 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, 'i', $id);
 
-        if (mysqli_stmt_execute($stmt) && mysqli_stmt_affected_rows($stmt) > 0) {
+       if (mysqli_stmt_execute($stmt) && mysqli_stmt_affected_rows($stmt) > 0) {
             $_SESSION['mensagem'] = 'Livro excluído com sucesso!';
+            $_SESSION['tipo_mensagem'] = 'success';
         } else {
             $_SESSION['mensagem'] = 'O livro não foi encontrado ou não pôde ser excluído.';
+            $_SESSION['tipo_mensagem'] = 'error';
         }
-
         mysqli_stmt_close($stmt);
-    } else {
+   } else {
         $_SESSION['mensagem'] = 'Não foi possível preparar a exclusão.';
+        $_SESSION['tipo_mensagem'] = 'error';
     }
 
     header('Location: listar.php');
@@ -112,8 +114,5 @@ $titulo_pagina = 'Excluir livro';
         </div>
     <?php endif; ?>
 </main>
-
-<?php require __DIR__ . '/../rodape.php'; ?>
-
 
 <?php require __DIR__ . '/../rodape.php'; ?>

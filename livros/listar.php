@@ -29,14 +29,22 @@ $resultado = mysqli_query($conexao, $sql);
         </a>
     </div>
 
-    <?php if (isset($_SESSION['mensagem'])) { ?>
-        <p class="alert alert-success">
-            <?php
-            echo htmlspecialchars($_SESSION['mensagem']);
-            unset($_SESSION['mensagem']);
-            ?>
+   <?php if (isset($_SESSION['mensagem'])) { ?>
+
+        <?php
+        $tipo_mensagem = $_SESSION['tipo_mensagem'] ?? 'success';
+        ?>
+
+        <p class="alert alert-<?php echo htmlspecialchars($tipo_mensagem); ?>">
+            <?php echo htmlspecialchars($_SESSION['mensagem']); ?>
         </p>
-    <?php } ?>
+
+        <?php
+        unset($_SESSION['mensagem']);
+        unset($_SESSION['tipo_mensagem']);
+        ?>
+
+<?php } ?>
 
     <div class="table-wrap">
 

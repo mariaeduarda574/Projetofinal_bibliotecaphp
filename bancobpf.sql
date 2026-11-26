@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/11/2026 às 21:33
+-- Tempo de geração: 26/11/2026 às 23:39
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,10 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`id`, `titulo`, `Autor`, `Editora`, `categoria`, `ano_publicacao`, `quantidade`) VALUES
-(1, 'Frankenstein', 'Mary Shelley', 'DarkSide Books', 'Terror / Ficção gótica', 2017, 5);
+(1, 'Frankenstein', 'Mary Shelley', 'DarkSide Books', 'Terror / Ficção gótica', 2017, 4),
+(3, 'O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 'HarperCollins', 'Literatura / Fantasia', 2015, 2),
+(4, 'A Culpa é das Estrelas', 'John Green', 'Intrínseca', 'Romance', 2012, 10),
+(5, 'Como Eu Era Antes de Você', 'Jojo Moyes', 'Intrínseca', 'Romance', 2012, 5);
 
 -- --------------------------------------------------------
 
@@ -57,6 +60,13 @@ CREATE TABLE `reservas` (
   `data_reserva` datetime DEFAULT current_timestamp(),
   `status` enum('Pendente','Aprovada','Cancelada') DEFAULT 'Pendente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `reservas`
+--
+
+INSERT INTO `reservas` (`id`, `usuario_id`, `livro_id`, `data_reserva`, `status`) VALUES
+(5, 2, 5, '2026-11-26 19:38:24', 'Pendente');
 
 -- --------------------------------------------------------
 
@@ -76,7 +86,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`) VALUES
-(1, 'admin', 'admin@gmail.com', '123456');
+(1, 'admin', 'admin@gmail.com', '123456'),
+(2, 'Maria', 'Eduarda@gmail.com', '181225');
 
 --
 -- Índices para tabelas despejadas
@@ -110,19 +121,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para tabelas despejadas
