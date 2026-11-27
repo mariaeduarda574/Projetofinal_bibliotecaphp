@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../verifica_admin.php';
 require __DIR__ . '/verifica_login.php';
 require __DIR__ . '/../conexao.php';
 
@@ -92,6 +93,15 @@ require __DIR__ . '/../cabecalho.php';
             ← Voltar ao acervo
         </a>
     </section>
+    <form method="POST" enctype="multipart/form-data" class="app-form">
+<label for="imagem">Capa do livro</label>
+
+<input
+    type="file"
+    id="imagem"
+    name="imagem"
+    accept="image/jpeg,image/png,image/webp"
+>
 
     <section class="panel">
         <h2>Cadastrar livro</h2>

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = mysqli_prepare(
         $conexao,
-        'SELECT id, nome FROM usuarios WHERE email = ? AND senha = ?'
+        'SELECT id, nome, tipo FROM usuarios WHERE email = ? AND senha = ?'
     );
 
     mysqli_stmt_bind_param($stmt, 'ss', $email, $senha);
@@ -21,14 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultado = mysqli_stmt_get_result($stmt);
 
     if ($usuario = mysqli_fetch_assoc($resultado)) {
+
+        session_regenerate_id(true);
+
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
+        $_SESSION['tipo'] = $usuario['tipo'];
 
         header('Location: ' . $base_url . 'livros/listar.php');
         exit;
+
     } else {
         $mensagem = 'E-mail ou senha inválidos.';
     }
+
+    mysqli_stmt_close($stmt);
 }
 
 $titulo_pagina = 'Entrar';
@@ -37,7 +44,9 @@ require __DIR__ . '/cabecalho.php';
 ?>
 
 <main class="form-page">
+
     <section class="form-intro">
+
         <span class="eyebrow">BEM-VINDO DE VOLTA</span>
 
         <h1>
@@ -48,9 +57,11 @@ require __DIR__ . '/cabecalho.php';
         <p>
             Acesse o painel para cuidar do acervo da Biblioteca Aurora.
         </p>
+
     </section>
 
     <section class="panel login-panel">
+
         <div class="panel-icon">✦</div>
 
         <h2>Fazer login</h2>
@@ -68,6 +79,7 @@ require __DIR__ . '/cabecalho.php';
             method="POST"
             class="app-form"
         >
+
             <label for="email">E-mail</label>
 
             <input
@@ -94,8 +106,11 @@ require __DIR__ . '/cabecalho.php';
             >
                 Entrar na biblioteca →
             </button>
+
         </form>
+
     </section>
+
 </main>
 
 <?php
